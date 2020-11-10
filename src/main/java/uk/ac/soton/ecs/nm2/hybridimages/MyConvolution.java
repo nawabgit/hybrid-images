@@ -11,11 +11,13 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
         this.kernel = kernel;
     }
 
+    // Convolve image with kernel and store result back in image
     @Override
     public void processImage(FImage image) {
-        // convolve image with kernel and store result back in image
-        //
-        // hint: use FImage#internalAssign(FImage) to set the contents
-        // of your temporary buffer image to the image.
+        // Pad the image to avoid reducing it's dimensions once convolved
+        int heightToPad = this.kernel.length;
+        int widthToPad = this.kernel[0].length;
+        FImage tempImage = new FImage(image.width + widthToPad, image.height + heightToPad);
+        tempImage.internalAssign(image.padding(widthToPad, heightToPad, 0f));
     }
 }
