@@ -39,8 +39,6 @@ public class MyHybridImages {
         MBFImage lowProcessedImage = lowImage.process(lowConvolution);
         MBFImage highProcessedImage = highImageCopy.process(highConvolution);
 
-        DisplayUtilities.display(lowProcessedImage);
-
         // Produce high frequency image
         MBFImage highFreqHighImage = highImage.subtract(highProcessedImage);
 
