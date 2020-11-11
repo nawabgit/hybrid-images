@@ -8,8 +8,16 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
     private float[][] kernel;
 
     public MyConvolution(float[][] kernel) {
-        //note that like the image pixels kernel is indexed by [row][column]
-        this.kernel = kernel;
+        // flip the kernel
+        float [][] flippedKernel = kernel.clone();
+
+        for(int i = 0; i < kernel.length; i++){
+            for(int j = 0; j < kernel[i].length; j++){
+                flippedKernel[i][j] = kernel[kernel.length-1-i][kernel[i].length-1-j];
+            }
+        }
+
+        this.kernel = flippedKernel;
     }
 
     // Convolve image with kernel and store result back in image
